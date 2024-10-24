@@ -8,8 +8,12 @@
 # Autor: John Sanabria - john.sanabria@correounivalle.edu.co
 # Fecha: 2024-08-22
 #
-INPUT_PNG="image.png"
-TEMP_FILE="image.bin"
-python3 fromPNG2Bin.py ${INPUT_PNG}
-./main ${TEMP_FILE}
-python3 fromBin2PNG.py ${TEMP_FILE}.new
+
+for img in public/assets/*.jpg; do
+    echo "Processing $img"
+    base=$(basename $img .jpg)
+    python3 fromPNG2Bin.py $img
+    ./main image.bin
+    python3 fromBin2PNG.py image.bin.new
+    mv image.bin.new.png processed_${base}.png
+done
