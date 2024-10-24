@@ -9,11 +9,18 @@
 # Fecha: 2024-08-22
 #
 
-for img in public/assets/*.jpg; do
-    echo "Processing $img"
-    base=$(basename $img .jpg)
-    python3 fromPNG2Bin.py $img
-    ./main image.bin
-    python3 fromBin2PNG.py image.bin.new
-    mv image.bin.new.png processed_${base}.png
+INPUT_DIR="./"
+TEMP_FILE="image.bin"
+
+
+for INPUT_PNG in ${INPUT_DIR}*.png; do
+    echo "Procesando: ${INPUT_PNG}"
+
+    TEMP_FILE="${INPUT_PNG%.png}.bin"
+
+    python3 fromPNG2Bin.py ${INPUT_PNG}
+    ./main ${TEMP_FILE}                      
+    python3 fromBin2PNG.py ${TEMP_FILE}.new
+
+    echo "Procesado y guardado: ${INPUT_PNG}"
 done
