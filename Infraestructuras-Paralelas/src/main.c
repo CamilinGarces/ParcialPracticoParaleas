@@ -81,7 +81,7 @@ void guardarImagen(int *imagen, int width, int height) {
 }
 
 
-v/*oid aplicarFiltro(int *imagen, int *imagenProcesada, int width, int height) {
+/*void aplicarFiltro(int *imagen, int *imagenProcesada, int width, int height) {
     // Código que aplica un filtro a cada píxel (paralelizable)
     for (int i = 0; i < width * height; i++) {
         imagenProcesada[i] = imagen[i] / 2;  // Ejemplo de operación de filtro
