@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+INPUT_DIR="../public/imagen/"
+TEMP_FILE="image.bin"
+
+
+for INPUT_PNG in ${INPUT_DIR}*.png; do
+    echo "Procesando: ${INPUT_PNG}"
+
+    TEMP_FILE="${INPUT_PNG%.png}.bin"
+
+    python3 fromPNG2Bin.py ${INPUT_PNG}
+    ./main ${TEMP_FILE}                      
+    python3 fromBin2PNG.py ${TEMP_FILE}.new
+
+    echo "Procesado y guardado: ${INPUT_PNG}"
+done
